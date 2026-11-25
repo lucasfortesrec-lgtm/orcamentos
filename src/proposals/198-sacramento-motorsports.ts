@@ -15,9 +15,9 @@ export const proposal: Proposal = {
   },
   projeto: {
     nome: "Sacramento Motorsports",
-    destaque: "aftermovie",
+    destaque: "em 3 dias",
     resumo:
-      "Cobertura do evento em um aftermovie vertical, com convidados, falas e depoimentos, pensado para Reels, TikTok e Stories.",
+      "Cobertura do evento em um vídeo vertical, com convidados, falas e depoimentos, pensado para Reels, TikTok e Stories e entregue em até 3 dias após o evento.",
     tipo: "Evento",
     datas: "26/11/2026",
     local: "BR-101, km 209 - S/N - Praia Comprida",
@@ -25,17 +25,17 @@ export const proposal: Proposal = {
     entregaveis: "01 vídeo Reels (vertical): cobertura do evento, convidados e depoimentos.",
   },
   escopoIntro:
-    "Referência: aftermovie no formato do vídeo “Conexão, Negócios e Visão” (Proscale x Slashfi).",
+    "Referência: vídeo no formato de “Conexão, Negócios e Visão” (Proscale x Slashfi).",
   escopo: [
     {
       titulo: "Entrega",
-      subtitulo: "Aftermovie vertical",
+      subtitulo: "Vídeo vertical · até 3 dias após o evento",
       descricao: "",
       bullets: [
-        "1 aftermovie vertical 9:16 (1080 x 1920), com cerca de 1min30, pensado para Reels, TikTok e Stories",
+        "1 vídeo vertical 9:16 (1080 x 1920), com cerca de 1min30, pensado para Reels, TikTok e Stories",
         "Edição dinâmica no ritmo da trilha, alternando falas, público e detalhes do ambiente",
         "Trechos das falas de palestrantes e anfitriões, com áudio limpo e legendas",
-        "Color grading cinematográfico que preserva o clima noturno e a luz ambiente do evento",
+        "Color grading cinematográfico que valoriza a luz e o ambiente do evento",
         "Abertura/encerramento com logos das marcas e parceiros do evento",
         "Trilha sonora licenciada para uso nas redes sociais",
       ],
@@ -58,7 +58,7 @@ export const proposal: Proposal = {
       bullets: [
         "Alinhamento prévio da pauta: pessoas, falas e momentos que não podem faltar",
         "Primeiro corte enviado no prazo combinado, com as rodadas de ajuste combinadas",
-        "Entrega final em MP4 via link de download",
+        "Entrega final em até 3 dias após o evento, em MP4 via link de download",
       ],
     },
   ],
@@ -72,5 +72,6 @@ export const proposal: Proposal = {
   pagamento: "50% na aprovação, 50% no dia do evento",
   prazoEntrega: "Até 3 dias após o evento",
   rodadasAjuste: "02",
+  naoIncluso: ["Captação aérea com drone"],
   termos: DEFAULT_TERMOS,
 };
