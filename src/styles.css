@@ -1,0 +1,203 @@
+@import "tailwindcss";
+
+/*
+ * Identidade LUCASFORTES.REC
+ * Fundo #121110 · creme #F3EDE3 · vermelho REC #C8312A (só detalhe) · areia clara #B5A693
+ */
+@theme {
+  --color-background: #121110;
+  --color-foreground: #f3ede3;
+  --color-card: #1a1917;
+  --color-primary: #c8312a;
+  --color-primary-foreground: #f3ede3;
+  --color-muted-foreground: #b5a693;
+  --color-border: rgb(243 237 227 / 0.1);
+  --color-ink: #111111;
+
+  --font-sans: "Jost", system-ui, sans-serif;
+  --font-display: "Jost", system-ui, sans-serif;
+  --font-accent: "Playfair Display", "Didot", serif;
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+  }
+  ::selection {
+    background: rgb(200 49 42 / 0.35);
+    color: #f3ede3;
+  }
+}
+
+:root {
+  --glow-red: radial-gradient(60% 60% at 15% 0%, rgb(200 49 42 / 0.12), transparent 70%);
+  --glow-red-center: radial-gradient(70% 55% at 50% 0%, rgb(200 49 42 / 0.1), transparent 72%);
+}
+
+/* ───────── Linha rec: traço vermelho com ponto na ponta direita ───────── */
+.rec-line {
+  position: relative;
+  height: 2px;
+  border-radius: 9999px;
+  background: var(--color-primary);
+  transform-origin: left center;
+  animation: rec-draw 900ms var(--ease-out-soft) both;
+  transition: width 600ms var(--ease-out-soft);
+}
+.rec-line::after {
+  content: "";
+  position: absolute;
+  right: -4px;
+  top: 50%;
+  width: 9px;
+  height: 9px;
+  border-radius: 9999px;
+  background: var(--color-primary);
+  transform: translateY(-50%);
+}
+@keyframes rec-draw {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+/* ───────── Motion discreto ───────── */
+
+/* Entrada suave dos blocos ao rolar */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 900ms var(--ease-out-soft),
+    transform 900ms var(--ease-out-soft);
+}
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Linha numerada (escopo, condições, termos): número desliza, traço vermelho cresce embaixo */
+.row-hover {
+  position: relative;
+}
+.row-hover::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 1px;
+  width: 100%;
+  background: var(--color-primary);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 700ms var(--ease-out-soft);
+  opacity: 0.7;
+}
+.row-hover .row-num {
+  display: inline-block;
+  transition: transform 500ms var(--ease-out-soft);
+}
+.row-hover .row-title {
+  transition: letter-spacing 600ms var(--ease-out-soft);
+}
+
+/* Fatos e dados: rótulo clareia */
+.fact-hover dt {
+  transition: color 400ms ease;
+}
+
+/* Tabela */
+.inv-row {
+  transition: background-color 400ms ease;
+}
+
+/* Cartão do total */
+.total-card {
+  transition:
+    border-color 500ms ease,
+    background-color 500ms ease;
+}
+.total-card .total-dot {
+  transition: transform 500ms var(--ease-out-soft);
+}
+
+/* Botões */
+.btn {
+  transition:
+    transform 400ms var(--ease-out-soft),
+    background-color 300ms ease,
+    border-color 300ms ease,
+    color 300ms ease,
+    opacity 300ms ease;
+}
+.btn-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: currentColor;
+  opacity: 0;
+  margin-left: -14px;
+  transition:
+    opacity 400ms ease,
+    margin 400ms var(--ease-out-soft);
+}
+
+/* Marca no topo: linha rec do "Orçamento" se estende */
+.brand-head .rec-line {
+  width: 6rem;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .row-hover:hover::after { transform: scaleX(1); }
+  .row-hover:hover .row-num { transform: translateX(6px); }
+  .row-hover:hover .row-title { letter-spacing: 0.01em; }
+  .fact-hover:hover dt { color: var(--color-foreground); }
+  .inv-row:hover { background-color: rgb(243 237 227 / 0.025); }
+  .total-card:hover { border-color: rgb(200 49 42 / 0.45); }
+  .total-card:hover .total-dot { transform: scale(1.5); }
+  .btn:hover { transform: translateY(-2px); }
+  .btn:hover .btn-dot { opacity: 1; margin-left: 0; }
+  .brand-head:hover .rec-line { width: 8.5rem; }
+  .logo-img { transition: transform 600ms var(--ease-out-soft); }
+  .logo-link:hover .logo-img { transform: translateX(-2px) scale(1.03); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  [data-reveal] { opacity: 1; transform: none; }
+}
+
+/* ───────── Captura do PDF e impressão: sem animações ───────── */
+.pdf-capture *, .pdf-capture *::before, .pdf-capture *::after {
+  animation: none !important;
+  transition: none !important;
+}
+.pdf-capture [data-reveal] { opacity: 1 !important; transform: none !important; }
+.pdf-capture .rec-line { transform: none !important; }
+.pdf-capture [data-pdf-hide] { display: none !important; }
+
+@media print {
+  @page { size: A4; margin: 12mm; }
+  html, body {
+    background: #121110 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  [data-pdf-hide] { display: none !important; }
+  [data-pdf-block] { break-inside: avoid; }
+  [data-reveal] { opacity: 1 !important; transform: none !important; }
+  .rec-line { animation: none; transform: none; }
+}
